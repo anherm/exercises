@@ -86,6 +86,29 @@ For the equality $|(\PE_{B'} \cap \Lambda)| = [\Lambda \colon \Lambda']$ note th
 
 \begin{Ex}
 
+\begin{enumerate}
+
+\item Let $\Lambda \subset \R^d$ be a subspace spanned by lattice vectors. Then $\Lambda \cap U$ is a lattice with $\text{dim}(\Lambda \cap U) = \text{dim} (U)$.
+
+\item Let $p \colon \R^d \to U^\bot$ be the orthogonal projection onto the orthogonal complement of $U$. Then $p(\Lambda)$ is a lattice with $\text{dim}(\Lambda) = \text{dim}(\Lambda) - \text{dim}(U)$.
+\end{enumerate}
+
+\begin{proof}
+
+1. Since both a vector space and a lattice are closed under addition, $\Lambda \cap U$ is an additive subspace of $\R^d$. Since $\Lambda \cap U \subset \Lambda$, the discreteness of $\Lambda \cap U$ is inherited from $\Lambda$. Thus $\Lambda \cap U$ is a lattice.
+
+For the statement about the dimension of $\Lambda \cap U$, let $U = \{x_1, \dotsc, x_m\}$, where $x_i \in \Lambda$ are the lattice vectors that span $U$. Remove some of the $x_i$ until the remaining set of $x_i$ is linearly independant and thus a basis of $U$. Now we see that $\text{dim}(U) \leq \text{dim}(\Lambda \cap U)$ since each of the basis vectors $x_i$ of $U$ is also in $\Lambda \cap U$. The other inequation $\text{dim}(\Lambda \cap U) \leq \text{dim}(U)$ is clear because $\Lambda \cap U \subset U$.
+
+2. VAGUELY ABOUT $\bigoplus$.
+
+Let $B'$ be a basis of the $\text{dim}(U)$-dimensional lattice $\Lambda' := \Lambda \cap U$. Extend $B'$ to a basis $B$ of $\Lambda$. Now $\Lambda(p(B)) = \Lambda(p(B\backslash B'))$ since $p(B') = 0$. We see that the set $p(B\backslash B')$ is linearly independant, since if there are $x_1 = p(y_1), \dotsc x_k = p(y_k) \in p(B\backslash B')$ with 
+
+\[ 0 = \sum_{i = 1}^{k} \lambda_i x_i = p( \sum_{i = 1}^k \lambda_i y_i) \]
+
+for some $\lambda_i \in \R$, we know that the right hand-side is not in the kernel of $p$ unless all $\lambda_i = 0$. Now it suffices to show that $p(\Lambda) = \Lambda(p(B \backslash B'))$, which is quite clear. This shows both that $p(\Lambda)$ is a lattice and that $\text{dim}(\Lambda) = \text{dim}(\Lambda) - \text{dim}(U)$.
+
+\end{proof}
+
 \end{Ex}
 
 \begin{Ex}
