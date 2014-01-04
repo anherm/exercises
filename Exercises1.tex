@@ -1,0 +1,181 @@
+\documentclass[11pt, a4paper, twoside]{article}
+\usepackage{geometry}
+\geometry{a4paper,left=35mm,right=25mm, top=35 mm, bottom=40 mm}
+\setlength{\parindent}{0pt}
+\usepackage[english]{ babel }
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{nicefrac}
+\usepackage{mathrsfs}
+\usepackage[arrow, matrix, curve]{xy}
+\usepackage{enumitem}
+\usepackage{mdwlist}
+\usepackage{makeidx}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{algorithm2e}
+\usepackage{bbm}
+
+\begin{document}
+ 
+\theoremstyle{definition}
+\newtheorem{Def} {Definition} 
+\newtheorem{Bsp} [Def] {Beispiel}
+\theoremstyle{definition}
+\newtheorem{Bem} [Def] {Bemerkung}
+\theoremstyle{plain}
+\newtheorem{Ex} [Def] {Exercise}
+\newtheorem{Thm} [Def] {Theorem}
+\newtheorem*{Thm*}{Theorem}
+\newtheorem{Kor} [Def] {Korollar}
+\bibliographystyle{alphadin}
+
+\fancyhead{}
+\renewcommand{\headrulewidth}{0pt}
+\newpage
+\fancyhead{}                            % Zunächst ist alles leer.
+\fancyhead[CE]{\leftmark}               % Links bei geraden und rechts
+%bei ungeraden Seitenzahlen soll der Name der Section stehen.
+\fancyhead[CO]{\rightmark}
+\renewcommand{\headrulewidth}{0.4pt}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\PE}{\mathcal P}
+\section*{Lattices and Convex Bodies: Exercises 1}
+
+\begin{Ex}
+
+Let $B \in \R^{d \times k}$ be a lattice basis and $U \in \R^{k \times k}$. Then $BU$ is a basis of $\Lambda(B)$ if and only if $U$ is unimodular.
+
+\begin{proof}
+
+First assume that $BU$ is a basis of $\Lambda(B)$. Thus we can write $B = BUV$ for some $V \in \Z^{k \times k}$. Since $B$ is linear independent and therefore has a left inverse, we can conclude $\mathbbm 1 = UV$. We obtain $1 = det(U) det(V)$ and thus $det(U) \in \{\pm 1\}$. 
+
+For the second implication, assume that $U$ is unimodular. We want to show that $\Lambda(B) = \Lambda(BU)$. For the inclusion from the right to the left, let $x \in BU$ be a basis vector and write $x = Bu$ for some column $u \in U$. Since $U$ is unimodular, we especially have $u \in \Z^k$, and thus $x \in \Lambda(B)$. Using this implication and the fact that $U$ is invertible, we can now write
+
+\[\Lambda(B) = \Lambda(B(UU^{-1})) = \Lambda((BU)U^{-1})) \subset \Lambda(BU) \]
+
+since $U^{-1}$ is also unimodular. 
+\end{proof}
+
+\end{Ex}
+
+\begin{Ex}
+
+Let $\Lambda' \subset \Lambda$ be full-dimensional lattices, $B'$ a basis of $\Lambda'$. Then we have
+
+\[ |(\PE_{B'} \cap \Lambda)| = \frac{\text{det}(\Lambda')}{\text{det}(\Lambda)} = [\Lambda \colon \Lambda']\,.\]
+
+
+\begin{proof}
+
+We already know that $\text{det}(\Lambda) = \text{vol}(\PE_{B})$ and $\text{det}(\Lambda') = \text{vol}(\PE_{B'})$. Thus the quotient $\frac{\text{det}(\Lambda')}{\text{det}(\Lambda)} = \frac{\text{vol}(\PE_{B'})}{\text{vol}(\PE_{B})}$ is the number of parallelipipeds $\PE_{B}$ that fit into $\PE_{B'}$. But each parallelepiped can be identified with its corner in the corresponding lattice that has the lowest coordinate in every dimension. Thus each point in $\PE_{B'} \cap \Lambda$ defines exactly one of the $\PE_{B}$ inside $\PE_{B'}$, and this enumerates all of them. Hence we have the first equality  $\frac{\text{det}(\Lambda')}{\text{det}(\Lambda)} = |(\PE_{B'} \cap \Lambda)|$. 
+
+For the equality $|(\PE_{B'} \cap \Lambda)| = [\Lambda \colon \Lambda']$ note that $\PE_{B'} \cap \Lambda$ is a system of representatives for the equivalence classes of the quotient group $\Lambda / \Lambda'$.
+
+\end{proof}
+
+\end{Ex}
+
+\begin{Ex}
+
+\end{Ex}
+
+\begin{Ex}
+
+\end{Ex}
+
+\begin{Ex}
+
+\begin{enumerate}
+
+\item The size reduction step of the LLL algorithm can be performed using $\text{poly}(d)$ arithmetic operations.
+
+\item
+
+\end{enumerate}
+
+\begin{proof}
+
+For the proof, we give a concrete algorithm for the size reduction and proof its correctness.
+
+\begin{center}
+\begin{algorithm}[H]
+\caption{Size Reduction}
+\DontPrintSemicolon
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+
+\Input{A basis $B$ of a lattice $\Lambda$}
+\Output{A basis $B$ of $\Lambda$ s.\,t. $|\mu_{ji}| \leq \frac{1}{2}$ for all $j < i$}  
+\For{$i = 2$ \KwTo $n$}  
+{
+	\For{$j = i - 1$ \KwTo $1$}
+	{
+		$b_{i} = b_i - \left\lceil\mu_{ji}\right\rfloor b_j$\;
+	}
+}
+\end{algorithm}
+\end{center}
+
+\begin{Thm*}
+
+The above algorithm performs the Size Reduction correctly, i.\,e. after performing it, we have 
+\[|\mu_{ji}| \leq \frac{1}{2} \text{ for all } j < i\,,\]
+and the resulting basis is still a basis of the input lattice $\Lambda$.
+The algorithm can be performed in time poly(d).
+
+\begin{proof}
+The statement about the running time is clear. The correctness is shown in the following three claims.
+
+\emph{Claim 1: Let $B$ be the input basis, $B'$ the output basis. Then we have $\Lambda(B) = \Lambda(B')$.}
+
+In each step of the algorithm, the only change applied to the basis is to exchange some basis vector $b_i$ with $b_i' := b_i - \left\lceil\mu_{ji}\right\rfloor b_j$. But since $\left\lceil\mu_{ji}\right\rfloor \in \Z$ and since we also can write $b_i = b_i' + \left\lceil\mu_{ji}\right\rfloor b_j$, this does not change the lattice $\Lambda$. 
+
+\emph{Claim 2: Consider the iteration of the algorithm where we set $b'_{i} = b_i - \left\lceil\mu_{ji}\right\rfloor b_j$ with $j < i$. Then we have $|\mu'_{ji}| \leq \frac{1}{2}$.} 
+
+As a preparation, we compute
+
+\[b_j^* b_j = b_j^*\left(b_j^* + \sum_{h < j} \mu_{hj} b_h^*\right) = b_j^* b_j^*\]
+
+since $b_j^*$ is orthogonal to all $b_h^*$ with $h < j$. Thus we can conclude
+
+\begin{align*}
+ |\mu'_{ji}| &= \left|\frac{b_j^* b'_i}{b_j^*b_j^*}\right| \\
+             &= \left|\frac{b_j^* \left(b_i - \left\lceil\mu_{ji}\right\rfloor b_j\right)}{b_j^*b_j^*}\right| \\
+             &= \left|\frac{b_j^* b_i}{b_j^*b_j^*} - \left\lceil\mu_{ji}\right\rfloor \frac{b_j^*b_j}{b_j^*b_j^*}\right| \\
+             &= \left|\mu_{ji} - \left\lceil\mu_{ji}\right\rfloor \frac{b_j^*b_j^*}{b_j^*b_j^*}\right| \\
+             &\leq \frac{1}{2}\,.
+\end{align*}
+
+\emph{Claim 3: Again consider the iteration for the pair $j < i$. For all $j' < i'$ which have been considered before, we still have $|\mu_{j'i'}| \leq \frac{1}{2}$.}
+
+First consider the case that $i' < i$. Then we also have $j' < i' < i$, so neither $b_{j'}^{(*)}$ nor $b_{i'}^{(*)}$ are affected by the change in $b_i$ and $\mu_{j'i'}$ remains the same.
+The other case to study is $i' = i$ and, due to the fact that the inner loop goes downwards, $j < j' < i$. As above, we can compute
+
+\[|\mu'_{j'i}| = \left|\mu_{j'i} - \left\lceil\mu_{ji}\right\rfloor \frac{b_{j'}^*b_j}{b_{j'}^*b_{j'}^*}\right|\,.\]
+
+But we have
+
+\[ b_{j'}^*b_j = b_{j'}^* \left(b_j^* + \sum_{h < j} \mu_{hj} b_h^*\right) = b_{j'}^*b_j^* + \sum_{h < j} \mu_{hj} b_{j'}^*b_h^* = 0\, , \]
+
+where $b_{j'}^*$ is orthogonal to $b_j^*$ and to all $b_h^*$ for $h < j$ since $h < j < j'$. Note that this is the step where we need the inner loop to go downwards. However, now the right summand in the above equation vanishes and we get
+
+\[|\mu'_{j'i}| = \left|\mu_{j'i} \right| \leq \frac{1}{2} \]
+
+since we already have considered the iteration $j' < i$ as $j' > j$ and the inner loop goes downwards.
+ 
+Thus we have shown that the basis we produce by the size reduction algorithm is a basis of $\Lambda$, and that in each iteration we assure for one pair $j < i$ that $\left |\mu_{ji}\right| \leq \frac{1}{2}$ without destroying this property for any other pair $j' < i'$ considered before, and since we consider all pairs $j < i$, the proof is complete.
+ 
+\end{proof}
+
+\end{Thm*}
+
+\end{proof}
+
+\end{Ex}
+
+\end{document}

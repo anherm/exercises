@@ -1,0 +1,81 @@
+\documentclass[11pt, a4paper, twoside]{article}
+\usepackage{geometry}
+\geometry{a4paper,left=35mm,right=25mm, top=35 mm, bottom=40 mm}
+\setlength{\parindent}{0pt}
+\usepackage[english]{ babel }
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{nicefrac}
+\usepackage{mathrsfs}
+\usepackage[arrow, matrix, curve]{xy}
+\usepackage{enumitem}
+\usepackage{mdwlist}
+\usepackage{makeidx}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{algorithm2e}
+
+\begin{document}
+ 
+\theoremstyle{definition}
+\newtheorem{Def} {Definition} 
+\newtheorem{Bsp} [Def] {Beispiel}
+\theoremstyle{definition}
+\newtheorem{Bem} [Def] {Bemerkung}
+\theoremstyle{plain}
+\newtheorem{Ex} [Def] {Exercise}
+\newtheorem{Thm} [Def] {Theorem}
+\newtheorem{Kor} [Def] {Korollar}
+\bibliographystyle{alphadin}
+
+\fancyhead{}
+\renewcommand{\headrulewidth}{0pt}
+\newpage
+\fancyhead{}                            % Zunächst ist alles leer.
+\fancyhead[CE]{\leftmark}               % Links bei geraden und rechts
+%bei ungeraden Seitenzahlen soll der Name der Section stehen.
+\fancyhead[CO]{\rightmark}
+\renewcommand{\headrulewidth}{0.4pt}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\section*{Lattices and Convex Bodies: Exercises 3}
+
+\begin{Ex}
+
+Let $\Lambda \subset \R^d$ be a full-dimensional lattice, $y \in \Lambda^*\backslash 0$. Then $y$ is primitive if and only if every lattice hyperplane $\{x \in \Lambda \colon y^Tx = \alpha\}$ for $\alpha \in \Z$ contains a point of $\Lambda$.
+
+\begin{proof}
+
+First let $y \in \Lambda^*\backslash 0$ be primitive, i.\,e. for every $t \in (0, 1)$, we have $ty \notin \Lambda^*$. By definition of $\Lambda^*$, we know that for all $x \in \Lambda$, we have $y^Tx \in \Z$. Let
+
+\[ k := \text{gcd} \{ \alpha \in Z \colon x^Ty = \alpha \} \,.\]
+
+THERE MIGHT BE A PROBLEM WITH INFINITE GCDS...
+
+Note that $k \in \Z_{\geq 1}$ and not $k = \infty$ since then for all $x \in \Lambda$, we would have $x^Ty = 0$, thus $\Lambda$ would lie on some hyperplane of $\R^d$ and not be full-dimensional. Choose $t := \frac{1}{k} \in (0, 1]$. Now let $x \in \Lambda$ and compute
+
+\[ (ty)^Tx = t (y^Tx) = \frac{\alpha}{k} \in \Z\]
+
+for some $\alpha \in \Z$ with $k | \alpha$. Since $y$ was assumed to be primitive, we have $t = 1$ and thus $k = 1$. But then we can choose a linear combination $1 = \sum \lambda_i \alpha_i$ with $\alpha_i \in \Z$ defining hit hyperplanes and $\lambda_i \in \Z$. If $x_i$ are vectors of $\Lambda$ with $y^T x_i = \alpha_i$, we can define $x := \sum \lambda_i x_i \in \Z$ and obtain
+
+\[ y^T x = \sum \lambda_i y^T x = \sum \lambda_i \alpha_i = 1 \,. \]
+
+Thus the hyperplane defined by $\alpha = 1 \in \Z$ is hit, and by additivity, every other hyperplane is also hit.
+
+On the other hand, let $y \in \Lambda^*\backslash 0$ be a vector such that for every $\alpha \in \Z$, we have 
+
+\[\{x \in \Lambda \colon y^Tx = \alpha\} \cap \Lambda \neq \emptyset\,.\]
+
+Assume there is some $t \in (0, 1)$ with $ty \in \Lambda^*$. Since every hyper plane is hit, there is some $x \in \Lambda$ with $y^Tx = 1$. But then we have 
+
+\[ (ty)^Tx = t (y^Tx) = t \notin \Z \,,\]
+
+contradicting to $ty \in \Lambda^*$. 
+\end{proof}  
+
+\end{Ex}
+
+\end{document}
