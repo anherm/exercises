@@ -1,0 +1,65 @@
+\documentclass[11pt, a4paper, twoside]{article}
+\usepackage{geometry}
+\geometry{a4paper,left=35mm,right=25mm, top=35 mm, bottom=40 mm}
+\setlength{\parindent}{0pt}
+\usepackage[english]{ babel }
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{nicefrac}
+\usepackage{mathrsfs}
+\usepackage[arrow, matrix, curve]{xy}
+\usepackage{enumitem}
+\usepackage{mdwlist}
+\usepackage{makeidx}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{algorithm2e}
+
+\begin{document}
+ 
+\theoremstyle{definition}
+\newtheorem{Def} {Definition} 
+\newtheorem{Bsp} [Def] {Beispiel}
+\theoremstyle{definition}
+\newtheorem{Bem} [Def] {Bemerkung}
+\theoremstyle{plain}
+\newtheorem{Ex} [Def] {Exercise}
+\newtheorem{Thm} [Def] {Theorem}
+\newtheorem{Kor} [Def] {Korollar}
+\bibliographystyle{alphadin}
+
+\fancyhead{}
+\renewcommand{\headrulewidth}{0pt}
+\newpage
+\fancyhead{}                            % Zunächst ist alles leer.
+\fancyhead[CE]{\leftmark}               % Links bei geraden und rechts
+%bei ungeraden Seitenzahlen soll der Name der Section stehen.
+\fancyhead[CO]{\rightmark}
+\renewcommand{\headrulewidth}{0.4pt}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\section*{Lattices and Convex Bodies: Exercises 2}
+
+\begin{Ex}
+
+\begin{enumerate}
+
+\item Show that $(\frac{1}{2} \Lambda) / \Lambda \cong (\Z_2)^d$.
+\item Show that $|(\Z_2)^d| = 2^d = \frac{\text{det}\Lambda}{\text{det}\frac{1}{2}\Lambda}$.
+
+\end{enumerate}
+
+\begin{proof}
+
+1. Let $B$ be some basis of $\Lambda$. Note that $B' := \frac{1}{2} B$ is a basis of $\frac{1}{2} \Lambda$. Define a map $(\frac{1}{2} \Lambda) / \Lambda \to (\Z_2)^d$ by mapping an element $x = \sum_{i = 1}^d \lambda_i b_i'$ with $b_i'$ the columns of $B'$ and $\lambda_i \in \Z$ to $(\lambda_i \text{ mod }2)_{i = 1 \dotsb d}$. This map is well-defined since it maps $\Lambda$ to $0$. An inverse is given by sending a tuple $(\lambda_i)_{i = 1 \dotsc d} \in (\Z_2)^d$ to $\sum_{i = 1}^d \lambda_i b_i'$.
+
+2. Since an element of $(\Z_2)^d$ consists of $d$ variables that can independantly be chosen to be either $0$ or $1$, we have $|(\Z_2)^d| = 2^d$. By the first statement and exercise 1.1, we get $|(\Z_2)^d| = |(\frac{1}{2} \Lambda) / \Lambda| = |(\frac{1}{2} \Lambda) : \Lambda| = \frac{\text{det}\Lambda}{\text{det}\frac{1}{2}\Lambda}$.
+
+\end{proof}
+
+\end{Ex}
+
+\end{document}
