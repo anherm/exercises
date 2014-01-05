@@ -51,17 +51,20 @@ Let $\Lambda \subset \R^d$ be a full-dimensional lattice, $y \in \Lambda^*\backs
 
 First let $y \in \Lambda^*\backslash 0$ be primitive, i.\,e. for every $t \in (0, 1)$, we have $ty \notin \Lambda^*$. By definition of $\Lambda^*$, we know that for all $x \in \Lambda$, we have $y^Tx \in \Z$. Let
 
-\[ k := \text{gcd} \{ \alpha \in Z \colon x^Ty = \alpha \} \,.\]
+\[ A := \{ \alpha \in Z \colon x^Ty = \alpha \} \,.\]
 
-THERE MIGHT BE A PROBLEM WITH INFINITE GCDS...
+We can choose some numeration $A = \{ \alpha_1, \alpha_2, \dotsc \}$ since it is a finite or countable subset of $\Z$, and we can choose $\alpha_1$ to be non-zero since if $A = \{0\}$, the whole lattice $\Lambda$ is orthogonal to $y$ and thus not full-dimensional. We define the greatest common divisor 
+\[g := \text{gcd}(A) = \text{gcd} (\dotsc \text{gcd}(\alpha_3, \text{gcd}(\alpha_2, \alpha_1))\dotsc)\]
 
-Note that $k \in \Z_{\geq 1}$ and not $k = \infty$ since then for all $x \in \Lambda$, we would have $x^Ty = 0$, thus $\Lambda$ would lie on some hyperplane of $\R^d$ and not be full-dimensional. Choose $t := \frac{1}{k} \in (0, 1]$. Now let $x \in \Lambda$ and compute
+of $A$ recursively. Then $g \in \Z_{\geq 1}$ is well-defined although $A$ might be countable: Note that $g$ is bounded from above by $\text{gcd}(\alpha_1, \alpha_2) < \infty$ (as $\alpha_1 > 0)$, bounded from below by $1$, and that the greatest common divisor can only decrease when we add some $\alpha_{i+1}$ to a subset $\{\alpha_1, \dotsc, \alpha_i\}$ of $A$. Therefore there is an index $k \in \mathbb N$ with $\text{gcd}(A) = \text{gcd}(A_k)$ for $A_k = \{\alpha_1, \dotsc, \alpha_k\}$. 
 
-\[ (ty)^Tx = t (y^Tx) = \frac{\alpha}{k} \in \Z\]
+Define $t := \frac{1}{g} \in (0, 1]$. Now let $x \in \Lambda$ and compute
 
-for some $\alpha \in \Z$ with $k | \alpha$. Since $y$ was assumed to be primitive, we have $t = 1$ and thus $k = 1$. But then we can choose a linear combination $1 = \sum \lambda_i \alpha_i$ with $\alpha_i \in \Z$ defining hit hyperplanes and $\lambda_i \in \Z$. If $x_i$ are vectors of $\Lambda$ with $y^T x_i = \alpha_i$, we can define $x := \sum \lambda_i x_i \in \Z$ and obtain
+\[ (ty)^Tx = t (y^Tx) = \frac{\alpha}{g} \in \Z\]
 
-\[ y^T x = \sum \lambda_i y^T x = \sum \lambda_i \alpha_i = 1 \,. \]
+for some $\alpha \in \Z$ with $g | \alpha$. This means that $ty \in \Lambda^*$, and since $y$ was assumed to be primitive, we have $t = 1$ and thus $g = 1$. But then we can choose a linear combination $1 = \sum_{i = 1}^k \lambda_i \alpha_i$ with $\alpha_i \in Z$ defining some of the hit hyperplanes and $\lambda_i \in \Z$. If $x_i$ are vectors of $\Lambda$ with $y^T x_i = \alpha_i$, we can define $x := \sum_{i = 1}^k \lambda_i x_i \in \Z$ to obtain
+
+\[ y^T x = \sum_{i = 1}^k \lambda_i y^T x = \sum_{i = 1}^k \lambda_i \alpha_i = 1 \,. \]
 
 Thus the hyperplane defined by $\alpha = 1 \in \Z$ is hit, and by additivity, every other hyperplane is also hit.
 
