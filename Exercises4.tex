@@ -40,6 +40,7 @@
 %bei ungeraden Seitenzahlen soll der Name der Section stehen.
 \fancyhead[CO]{\rightmark}
 \renewcommand{\headrulewidth}{0.4pt}
+\newcommand{\N}{\mathbb N}
 \newcommand{\Z}{\mathbb Z}
 \newcommand{\R}{\mathbb R}
 \newcommand{\cone}{\text{cone}}
@@ -132,7 +133,7 @@ Thus for $x = \sum_j \mu_j u_j$, this implies
 
 \[y^T x = y^t \sum_j \mu_j u_j \sum_j \mu_j y^T u_j \leq 0\,.\]
 
-For the second part, let $U \in \Z^{d \times d}$ with $det(U) = \pm 1$. Due to Cramer's law, $V$ and thus $-V^T$ is also in $\Z^{d \times d}$, and since $det(U) det(V) = 1$ and $det(-V^T) = - det(V^T) = - det(V)$, $-V^T$ is also unimodular.
+For the second part, let $U \in \Z^{d \times d}$ with $\det(U) = \pm 1$. Due to Cramer's law, $V$ and thus $-V^T$ is also in $\Z^{d \times d}$, and since $\det(U) \det(V) = 1$ and $\det(-V^T) = - \det(V^T) = - \det(V)$, $-V^T$ is also unimodular.
 \end{proof}
 
 \end{Ex}
@@ -148,6 +149,7 @@ Let $u_1, \dotsc, u_d \in \Z^d$ be primitive and linearly indepentend, $P$ the f
 \item As formal series, we have $f(K;x) = (\sum_{p \in P \cap \Z^d} x^p) \prod_j \sum_{n=0}^\infty x^{nu_j}\,.$
 \item Were the series converges, we have $f(K;x) = (\sum_{p \in P \cap \Z^d} x^p) \prod_j \frac{1}{1 - x^u_j}.$
 
+\end{enumerate}
 
 \begin{proof}
 
@@ -169,6 +171,27 @@ The second statement follows immediately when considering $(1 - x^{u_j}) \sum_{n
 
 \end{proof}
 
+\begin{Ex}
+
+Let $k \in \N_{\geq 1}$, $K := \cone \left(\begin{matrix} 0 & k \\ 1 & 1 \end{matrix} \right)$. 
+
+\begin{enumerate}
+
+\item Determine $\det(K)$.
+
+\item Show that $[K]$ can be written as a linear combination of two unimodular cones and one lower-dimensional cone.
+
 \end{enumerate}
+
+\begin{proof}
+
+Note that $\det(K) = |(0 \cdot 1 - k \cdot 1| = k$. 
+
+Let $K_1 := \cone \left(\begin{matrix} 0 & 1 \\ 1 & 0 \end{matrix} \right)$, $K_2 := \cone \left(\begin{matrix} 1 & k \\ 0 & 1 \end{matrix} \right)$, $K_3 := \cone \left(\begin{matrix} k \\ 1\end{matrix} \right)$. Then $\det(K_1) = 1$, $\det(K_2) = 1$, thus $K_1$ and $K_2$ are unimodular, and $K_3$ is a one-dimensional cone. Drawing a picture, we see that $[K_1] - [K_2] + [K_3] = [K]$.
+
+\end{proof}
+
+\end{Ex}
+
 
 \end{document}
