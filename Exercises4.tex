@@ -193,5 +193,30 @@ Let $K_1 := \cone \left(\begin{matrix} 0 & 1 \\ 1 & 0 \end{matrix} \right)$, $K_
 
 \end{Ex}
 
+\begin{Ex}
+
+Let $D := \{1, \dotsc, d\}$, $A = A_1 \cup \dotsb \cup A_d$. We have 
+
+\[[A] = \sum_{\emptyset \neq I \subset D} (-1)^{|I|-1} [\bigcap_{i \in I} A_i]\,.\]
+
+\begin{proof}
+
+Let $x \in \R^d$. We show that $x \in A$ if and only if the right handside evaluates to $1$.
+
+We immediately see that, if $x \notin A$, we have $x \notin \bigcap_{i \in I} A_i$ for any $I \subset D$, thus the right handside evaluates to $0$.
+
+Thus let $x \in A$. Choose $I \subset D$ such that $x \in A_i$ for all $i \in I$, $x \notin A_i$ for all $i \in D \backslash I$. Since $x \in A$, we have $I \neq \emptyset$. Now we can compute
+
+\begin{align*}
+\sum_{\emptyset \neq I \subset D} (-1)^{|I|-1} [\bigcap_{i \in I} A_i] &= \sum_{\emptyset \neq J \subset I} (-1)^{|J|-1} \cdot 1 \\
+                                                                       &= \sum_{k = 1}^{|I|} (-1)^{k-1} \binom{|I|}{k} \\
+                                                                       &= (-1) \sum_{k = 1}^{|I|} (-1)^{k} \binom{|I|}{k} \\
+                                                                       &= (-1) ((1 - 1)^{|I|} - (-1)^0 \binom{|I|}{0}) \\
+                                                                       &= 1\,.
+\end{align*}
+
+\end{proof}
+
+\end{Ex}
 
 \end{document}
