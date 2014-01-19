@@ -40,6 +40,7 @@
 \fancyhead[CO]{\rightmark}
 \renewcommand{\headrulewidth}{0.4pt}
 \newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
 \newcommand{\R}{\mathbb R}
 \section*{Lattices and Convex Bodies: Exercises 2}
 
@@ -62,4 +63,45 @@
 
 \end{Ex}
 
+\begin{Ex}
+
+Let $B \in \Q^{d \times d}$ be an LLL-reduced basis of $\Lambda$, $t \in \R^d$.
+
+\begin{enumerate}
+
+\item Let $x = \sum_{i = 1}^d a_i b_i$ be a shortest vector of $\Lambda$. Then $|a_j| \leq 2^{O(d)}$ for each $j = 1, \dotsc, d$.
+
+\item A shortest vector of $\Lambda$ can be computed in time $2^{O(d^2)}$.
+
+\end{enumerate}
+
+\begin{proof}
+
+Assume we have shown the first statement. Then we know that the coefficients $a_i \in \Z$ of a shortest vector $x$ are in an intervall $[-2^{O(d)}, 2^{O(d)}]$ for each $i$. Hence we find a shortest vector if we enumerate all possible choices of coefficients. To do that, we can choose each of the $d$ coefficients independently, and for each coefficient we have $2 \cdot 2^{O(d)}$ choices. This gives a runtime of $(2^{O(d)})^d = 2^{O(d^2)}$.
+
+\end{proof}
+
+\end{Ex}
+
+\begin{Ex}
+
+\end{Ex}
+
+\begin{Ex}
+
+\begin{enumerate}
+
+\item
+
+\item Let $\Lambda := \{x \in \Z^d \colon x_1 \equiv \dotsb \equiv x_d (\text{mod} 2)\}$, $d \geq 5$. Then there is no basis of $\Lambda$ with shortest independent vectors.
+
+\end{enumerate}
+
+\begin{proof}
+
+Let $v_i := 2 \cdot e_i \in \Lambda$, $i = 1, \dotsc, d$. Then $\| v_i \| = 2$ for all $i$, and the $v_i$ are linearly independent. If we consider any other non-zero $v \in \Lambda$, its absolute value is greater than $2$: for $v$ "`congruent to 0"' this is clear, and otherwise we have $\| v \| \geq \| (1, \dotsc, 1)\| > 2$ since $d > 5$. Thus $\lambda_i = 2$ for all $i = 1, \dotsc, d$ and the only chance for the desired basis is to choose all $v_i$. But these do not form a basis since all the vectors "`congruent to 1"' are not hit.
+
+\end{proof}
+
+\end{Ex}
 \end{document}
