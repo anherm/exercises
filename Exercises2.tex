@@ -91,7 +91,7 @@ Assume we have shown the first statement. Then we know that the coefficients $a_
 
 \begin{enumerate}
 
-\item
+\item Every $2$-dimensional lattice has a basis $(b_1, b_2)$ in which $\|b_1\| = \lambda_1$ and $\|b_2\| = \lambda_2$.
 
 \item Let $\Lambda := \{x \in \Z^d \colon x_1 \equiv \dotsb \equiv x_d (\text{mod} 2)\}$, $d \geq 5$. Then there is no basis of $\Lambda$ with shortest independent vectors.
 
@@ -99,7 +99,9 @@ Assume we have shown the first statement. Then we know that the coefficients $a_
 
 \begin{proof}
 
-Let $v_i := 2 \cdot e_i \in \Lambda$, $i = 1, \dotsc, d$. Then $\| v_i \| = 2$ for all $i$, and the $v_i$ are linearly independent. If we consider any other non-zero $v \in \Lambda$, its absolute value is greater than $2$: for $v$ "`congruent to 0"' this is clear, and otherwise we have $\| v \| \geq \| (1, \dotsc, 1)\| > 2$ since $d > 5$. Thus $\lambda_i = 2$ for all $i = 1, \dotsc, d$ and the only chance for the desired basis is to choose all $v_i$. But these do not form a basis since all the vectors "`congruent to 1"' are not hit.
+For the first statement, choose $(b_1, b_2)$ as a reduced basis. Then by exercise 3 from sheet 1, $\|b_1\| = \lambda_1$. Now consider the lattice hyperplanes parallel to $b_1$ that contain lattice vectors to test whether there is any lattice vector linearly independent from $b_1$ and shorter than $b_2$. The only hyper planes that intersect the circuit of radius $\|b_2\|$ around $0$ go through $0$, $b_2$ and $-b_2$. On the line parallel to $b_1$ through $0$, all vectors are linear dependent from $b_1$. On the line through $b_2$, there is no lattice vector shorter than $b_2$ since $|\mu_{12}| \leq \frac{1}{2}$. For $-b_2$, one argues similarly.
+
+For the second statement, let $v_i := 2 \cdot e_i \in \Lambda$, $i = 1, \dotsc, d$. Then $\| v_i \| = 2$ for all $i$, and the $v_i$ are linearly independent. If we consider any other non-zero $v \in \Lambda$, its absolute value is greater than $2$: for $v$ "`congruent to 0"' this is clear, and otherwise we have $\| v \| \geq \| (1, \dotsc, 1)\| > 2$ since $d > 5$. Thus $\lambda_i = 2$ for all $i = 1, \dotsc, d$ and the only chance for the desired basis is to choose all $v_i$. But these do not form a basis since all the vectors "`congruent to 1"' are not hit.
 
 \end{proof}
 
