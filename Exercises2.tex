@@ -77,13 +77,69 @@ Let $B \in \Q^{d \times d}$ be an LLL-reduced basis of $\Lambda$, $t \in \R^d$.
 
 \begin{proof}
 
-Assume we have shown the first statement. Then we know that the coefficients $a_i \in \Z$ of a shortest vector $x$ are in an intervall $[-2^{O(d)}, 2^{O(d)}]$ for each $i$. Hence we find a shortest vector if we enumerate all possible choices of coefficients. To do that, we can choose each of the $d$ coefficients independently, and for each coefficient we have $2 \cdot 2^{O(d)}$ choices. This gives a runtime of $(2^{O(d)})^d = 2^{O(d^2)}$.
+For the first statement, recall that the vector $b_1$ fulfills 
+
+\[ \|b_1\|^2 \leq \|2^{d-1} \|b_d^*\|^2\]
+
+since $B$ is LLL-reduced. Furthermore, we compute
+
+\begin{align*}
+\| x \|^2 &= \| \sum_{i = 1}^d a_i b_i \|^2 \\
+                &= \| \sum_{i = 1}^{d-1} a_i b_i + a_d (b_d^* + \sum_{i = 1}^{d-1} \mu_{id} b_i^*\|^2) \\
+                &\geq \| a_d b_d^* \|^2\,.
+\end{align*}
+
+Together, we obtain
+
+\[2^{d-1} \|b_d^*\|^2 \geq |a_d|^d  \|b_d^*\|^2 \]
+
+and thus
+
+\[|a_d| \leq 2^{\frac{d-1}{2}} = 2^{O(d)}\,.\]
+
+For $a_{d-1}$, we can do the same in the lattice hyper plane orthogonal to $b_d^*$ if we choose $x' := x - a_d b_d^*$. Note that $x'$ is a shortest vector of $\Lambda'$ and thus $a'_{d-1} \in 2^{O(d)}$. But then $a_{d-1} = a a'_{d-1} + a_d \in 2^{O(d)}$. Since we continue inductively only $d$ times, this also holds for the further inductive statements.
+
+Now we know that the coefficients $a_i \in \Z$ of a shortest vector $x$ are in an intervall $[-2^{O(d)}, 2^{O(d)}]$ for each $i$. Hence we find a shortest vector if we enumerate all possible choices of coefficients. To do that, we can choose each of the $d$ coefficients independently, and for each coefficient we have $2 \cdot 2^{O(d)}$ choices. This gives a runtime of $(2^{O(d)})^d = 2^{O(d^2)}$.
 
 \end{proof}
 
 \end{Ex}
 
 \begin{Ex}
+
+Let $B \in \Q^{d \times d}$ be LLL-reduced, $t \in \R^d$.
+
+\begin{enumerate}
+
+\item Let $x^* \in \Lambda$ be a closest vector to $t$, $\lambda \in \R^d$ with $t = B\lambda$ and $\alpha \in \Z^d$ with $x^* = B\alpha$. Then $|\alpha_d - \lambda_d| \leq 2^{\frac{d-2}{2}}$.
+
+\item A closest vector to $t$ in $\Lambda$ can be computed in time $2^{O(d^2)}$.
+
+\end{enumerate}
+
+\begin{proof}
+
+For the first statement, recall that the vector $x$ returned by the Nearest Plane algorithm satisfies 
+
+\[\| t - x \|^2 \leq 2^{d-2} \|b_d^*\|^2\,.\]
+
+On the other hand, we compute
+
+\begin{align*}
+\| t - x^* \|^2 &= \| \sum_{i = 1}^d (\lambda_i - \alpha_i) b_i \|^2 \\
+                &= \| \sum_{i = 1}^{d-1} (\lambda_i - \alpha_i) b_i + (\lambda_d - \alpha_d) (b_d^* + \sum_{i = 1}^{d-1} \mu_{id} b_i^*\|^2) \\
+                &\geq \| (\lambda_d - \alpha_d) b_d^* \|^2\,.
+\end{align*}
+
+Since $x^*$ is a closest lattice vector to $t$, these inequalities together yield
+       
+\[\| (\lambda_d - \alpha_d) b_d^* \|^2\ \leq \| t - x \|^2 \leq \| t - x \|^2 \leq 2^{d-2} \|b_d^*\|^2\,,\]
+
+proving $|\lambda_d - \alpha_d| \leq 2^{\frac{d-2}{2}}$. 
+
+For the second statement, we use this fact inductively to determine the $\alpha_i$. At first, we try out all $2^{\frac{d-2}{2}}$ possibilities for $\alpha_d$. Then we consider the vector $t' := t - \lambda_d b_d$ in $\Lambda'$ and by induction receive $\alpha_{d-1}$.
+   
+\end{proof}
 
 \end{Ex}
 
