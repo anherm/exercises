@@ -42,6 +42,7 @@
 \newcommand{\Z}{\mathbb Z}
 \newcommand{\Q}{\mathbb Q}
 \newcommand{\R}{\mathbb R}
+
 \section*{Lattices and Convex Bodies: Exercises 2}
 
 \begin{Ex}
@@ -162,4 +163,28 @@ For the second statement, let $v_i := 2 \cdot e_i \in \Lambda$, $i = 1, \dotsc, 
 \end{proof}
 
 \end{Ex}
+
+\begin{Ex}
+
+Lattice width is invariant under invertible linear transformations.
+
+\begin{proof}
+
+Let $A \in GL_d{\R}$ be an invertible transformation, $\Lambda \subset \R^d$ a lattice, $K$ a convex body. We know that for the dual lattice, we have
+
+\[ (A\Lambda)^* = A^{-T} \Lambda^* \,. \]
+
+Thus we can compute directly
+
+\begin{align*}
+w(AK, A\Lambda) &= \min_{y \in (A\Lambda)^*} \{ \max_{x \in AK} y^Tx - \min_{x \in AK} y^Tx \} \\
+                &= \min_{y \in A^{-T} \Lambda^*} \{ \max_{x \in AK} y^Tx - \min_{x \in AK} y^Tx \} \\
+                &= \min_{y \in \Lambda^*} \{ \max_{x \in K} (A^{-T}y)^T(Ax) - \min_{x \in K} (A^{-T}y)^T(Ax) \} \\
+                &= \min_{y \in \Lambda^*} \{ \max_{x \in K} y^Tx - \min_{x \in K} y^Tx \} 
+\end{align*} 
+
+\end{proof}
+
+\end{Ex}
+
 \end{document}
